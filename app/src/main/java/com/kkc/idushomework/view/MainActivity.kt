@@ -6,6 +6,7 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.kkc.idushomework.R
+import com.kkc.idushomework.adapter.WeatherListAdapter
 import com.kkc.idushomework.databinding.ActivityMainBinding
 import com.kkc.idushomework.model.WeatherListModel
 import com.kkc.idushomework.viewmodel.WeatherListViewModel
@@ -17,11 +18,13 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
-        binding.weather = viewModel
     }
 
-    private fun 
+    override fun onStart() {
+        super.onStart()
+        binding.weatherList.adapter = WeatherListAdapter()
+        binding.weather = viewModel
+    }
 }

@@ -9,7 +9,7 @@ import com.kkc.idushomework.databinding.WeatherListItemBinding
 import com.kkc.idushomework.model.WeatherOfCity
 
 class WeatherListAdapter : RecyclerView.Adapter<WeatherListViewHolder>() {
-    private val weathers by lazy { ArrayList<WeatherOfCity>()}
+    private val weathers = ArrayList<WeatherOfCity>()
     private val HEADER = 0
     private val ITEM = 1
 
