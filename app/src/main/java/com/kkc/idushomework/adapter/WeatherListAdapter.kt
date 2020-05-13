@@ -27,7 +27,7 @@ class WeatherListAdapter : RecyclerView.Adapter<WeatherListViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: WeatherListViewHolder, position: Int) {
-        holder.getBinding()?.let { it.weather = weathers[position] }
+        holder.getBinding()?.let { it.weather = weathers[position - 1] }
     }
 
     override fun getItemViewType(position: Int): Int {

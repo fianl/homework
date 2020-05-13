@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/local"
-        android:layout_width="48dp"
+        android:layout_width="40dp"
         android:layout_height="0dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"

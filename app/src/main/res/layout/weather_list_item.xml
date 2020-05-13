@@ -16,13 +16,14 @@
 
         <TextView
             android:id="@+id/localTitle"
-            android:layout_width="48dp"
+            android:layout_width="40dp"
             android:layout_height="0dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:gravity="center"
-            android:textColor="@android:color/black" />
+            android:textColor="@android:color/black"
+            android:text="@{weather.title}"/>
 
         <View
             android:layout_width="1dp"
@@ -44,8 +45,8 @@
 
             <ImageView
                 android:id="@+id/todayImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:glideImg="@{weather.tomorrow.weather_state_abbr}"/>
@@ -56,6 +57,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/todayImg"
                 app:layout_constraintTop_toTopOf="@id/todayImg"
+                android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:text="@{weather.today.weather_state_name}"/>
 
@@ -66,6 +68,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/todayTxt"
                 app:layout_constraintTop_toBottomOf="@id/todayTxt"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="12dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
                 android:text="@{weather.today.the_temp}"/>
@@ -76,6 +79,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/todayTemp"
                 app:layout_constraintTop_toTopOf="@id/todayTemp"
+                android:textSize="12dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:text="℃"/>
 
@@ -86,6 +90,7 @@
                 app:layout_constraintLeft_toRightOf="@id/todayTempUnit"
                 app:layout_constraintTop_toTopOf="@id/todayTempUnit"
                 android:layout_marginLeft="8dp"
+                android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:text="@{weather.today.humidity}"/>
@@ -96,6 +101,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/todayHumidity"
                 app:layout_constraintTop_toTopOf="@id/todayHumidity"
+                android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:text="%"/>
 
@@ -121,8 +127,8 @@
 
             <ImageView
                 android:id="@+id/tomorrowImg"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:glideImg="@{weather.tomorrow.weather_state_abbr}"/>
@@ -133,6 +139,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/tomorrowImg"
                 app:layout_constraintTop_toTopOf="@id/tomorrowImg"
+                android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:text="@{weather.tomorrow.weather_state_name}"/>
 
@@ -143,6 +150,7 @@
                 app:layout_constraintLeft_toLeftOf="@id/tomorrowTxt"
                 app:layout_constraintTop_toBottomOf="@id/tomorrowTxt"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:textSize="12dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
                 android:text="@{weather.tomorrow.the_temp}"/>
@@ -153,6 +161,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/tomorrowTemp"
                 app:layout_constraintTop_toTopOf="@id/tomorrowTemp"
+                android:textSize="12dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:text="℃"/>
 
@@ -163,6 +172,7 @@
                 app:layout_constraintLeft_toRightOf="@id/tomorrowTempUnit"
                 app:layout_constraintTop_toTopOf="@id/tomorrowTempUnit"
                 android:layout_marginLeft="8dp"
+                android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:text="@{weather.tomorrow.humidity}"/>
@@ -173,6 +183,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/tomorrowHumidity"
                 app:layout_constraintTop_toTopOf="@id/tomorrowHumidity"
+                android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:text="%"/>
 

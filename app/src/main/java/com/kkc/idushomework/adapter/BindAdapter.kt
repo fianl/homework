@@ -4,6 +4,7 @@ import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.kkc.idushomework.model.WeatherOfCity
 
 @BindingAdapter("app:weatherRepository")
@@ -22,8 +23,11 @@ fun setWeatherData(view: RecyclerView, list: ArrayList<WeatherOfCity>?) {
 }
 
 @BindingAdapter("app:glideImg")
-fun loadImageByGlide(view: ImageView, url: String) {
-
+fun loadImageByGlide(view: ImageView, abbr: String) {
+    val url = "https://www.metaweather.com/static/img/weather/png/${abbr}.png"
+    Glide.with(view)
+        .load(url)
+        .into(view)
 }
 
 @BindingAdapter("app:visibility")
