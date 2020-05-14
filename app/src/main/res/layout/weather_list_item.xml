@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/todayImg"
                 app:layout_constraintTop_toTopOf="@id/todayImg"
+                android:layout_marginLeft="12dp"
                 android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:text="@{weather.today.weather_state_name}"/>
@@ -71,7 +72,7 @@
                 android:textSize="12dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
-                android:text="@{weather.today.the_temp}"/>
+                app:temperature="@{weather.today.the_temp}"/>
 
             <TextView
                 android:id="@+id/todayTempUnit"
@@ -139,6 +140,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintLeft_toRightOf="@id/tomorrowImg"
                 app:layout_constraintTop_toTopOf="@id/tomorrowImg"
+                android:layout_marginLeft="12dp"
                 android:textSize="12dp"
                 android:textColor="@android:color/black"
                 android:text="@{weather.tomorrow.weather_state_name}"/>
@@ -153,7 +155,7 @@
                 android:textSize="12dp"
                 android:textColor="@android:color/holo_red_dark"
                 android:textStyle="bold"
-                android:text="@{weather.tomorrow.the_temp}"/>
+                app:temperature="@{weather.tomorrow.the_temp}"/>
 
             <TextView
                 android:id="@+id/tomorrowTempUnit"

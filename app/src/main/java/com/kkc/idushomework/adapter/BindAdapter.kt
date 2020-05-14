@@ -2,6 +2,7 @@ package com.kkc.idushomework.adapter
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -20,6 +21,11 @@ fun setWeatherData(view: RecyclerView, list: ArrayList<WeatherOfCity>?) {
             adapter.setWeatherData(wheatherList)
         }
     }
+}
+
+@BindingAdapter("app:temperature")
+fun setTemperature(view: TextView, temp: Float) {
+    view.text = "${temp.toInt()}"
 }
 
 @BindingAdapter("app:glideImg")
