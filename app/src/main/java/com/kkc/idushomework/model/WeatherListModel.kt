@@ -16,9 +16,9 @@ class WeatherListModel {
     val showProgress: LiveData<Boolean>
         get() = _showProgress
 
-    private val _toaseMessage = MutableLiveData<String>()
-    val toastMessage: LiveData<String>
-        get() = _toaseMessage
+    private val _isRefreshing = MutableLiveData<Boolean>()
+    val isRefreshing: LiveData<Boolean>
+        get() = _isRefreshing
 
     private val _citys = MutableLiveData<ArrayList<City>>()
     private val _wocList = MutableLiveData<ArrayList<WeatherOfCity>>()
@@ -42,6 +42,7 @@ class WeatherListModel {
             }, {err ->
                 err.printStackTrace()
                 _showProgress.value = false
+                _isRefreshing.value = false
             })
     }
 
@@ -59,12 +60,20 @@ class WeatherListModel {
             .map { list -> list.map { weathers -> WeatherOfCity("", weathers.consolidated_weather[0], weathers.consolidated_weather[1]) }  }
             .subscribe({result ->
                 _showProgress.value = false
+                _isRefreshing.value = false
                 result.forEachIndexed { index, woc -> woc.title = _citys.value?.get(index)?.title }
                 _wocList.value = result as ArrayList<WeatherOfCity>?
             }, {err ->
                 err.printStackTrace()
                 _showProgress.value = false
+                _isRefreshing.value = false
             })
 
+    }
+
+    fun requestRefresh() {
+        _isRefreshing.value = true
+        _wocList.value = ArrayList<WeatherOfCity>()
+        requestCityList()
     }
 }
