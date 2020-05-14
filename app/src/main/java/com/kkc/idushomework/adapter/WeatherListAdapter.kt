@@ -23,7 +23,7 @@ class WeatherListAdapter : RecyclerView.Adapter<WeatherListViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return weathers.size + 1
+        return if(weathers.size > 0) weathers.size + 1 else 0
     }
 
     override fun onBindViewHolder(holder: WeatherListViewHolder, position: Int) {
