@@ -9,17 +9,15 @@ import com.bumptech.glide.Glide
 import com.kkc.idushomework.model.WeatherOfCity
 
 @BindingAdapter("app:weatherRepository")
-fun setWeatherData(view: RecyclerView, list: ArrayList<WeatherOfCity>?) {
-    list?.let {wheatherList ->
-        view.adapter?.let {
-            if (it is WeatherListAdapter) {
-                it.setWeatherData(wheatherList)
-            }
-        }?: run {
-            val adapter = WeatherListAdapter()
-            view.adapter = adapter
-            adapter.setWeatherData(wheatherList)
+fun setWeatherData(view: RecyclerView, list: List<WeatherOfCity>?) {
+    view.adapter?.let {
+        if (it is WeatherListAdapter) {
+            it.setWeatherData(list)
         }
+    }?: run {
+        val adapter = WeatherListAdapter()
+        view.adapter = adapter
+        adapter.setWeatherData(list)
     }
 }
 

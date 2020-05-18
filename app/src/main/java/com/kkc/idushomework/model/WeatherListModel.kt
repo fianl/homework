@@ -20,9 +20,9 @@ class WeatherListModel {
     val isRefreshing: LiveData<Boolean>
         get() = _isRefreshing
 
-    private val _citys = MutableLiveData<ArrayList<City>>()
-    private val _wocList = MutableLiveData<ArrayList<WeatherOfCity>>()
-    val wocList: LiveData<ArrayList<WeatherOfCity>>
+    private val _cities = ArrayList<City>()
+    private val _wocList = MutableLiveData<List<WeatherOfCity>>()
+    val wocList: LiveData<List<WeatherOfCity>>
         get() = _wocList
 
     init {
@@ -35,10 +35,9 @@ class WeatherListModel {
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
             .subscribe({result ->
-                _citys.value = result
-                val sources = ArrayList<Single<WeatherResult>>()
-                result.forEach { city -> sources.add(requestCityWeather(city.woeid)) }
-                cityWeatherZip(sources)
+                _cities.clear()
+                _cities.addAll(result)
+                cityWeatherZip(result)
             }, {err ->
                 err.printStackTrace()
                 _showProgress.value = false
@@ -48,32 +47,33 @@ class WeatherListModel {
 
     private fun requestCityWeather(cityId: String) = Retrofit.getInstance().getWeatherService().getCityWeatehrs(cityId)
 
-    private fun cityWeatherZip(list: ArrayList<Single<WeatherResult>>) {
-        SingleZipArray(list.toTypedArray(),
-            Function<Array<Any>, ArrayList<WeatherResult>> { t ->
+    private fun cityWeatherZip(cityList: ArrayList<City>) {
+        val sources = ArrayList<Single<WeatherResult>>()
+        cityList.forEach { city -> sources.add(requestCityWeather(city.woeid)) }
+
+        SingleZipArray(sources.toTypedArray(),
+            Function<Array<Any>, ArrayList<WeatherResult>> { array ->
                 val resultList = ArrayList<WeatherResult>()
-                t?.forEach { item -> resultList.add(item as WeatherResult) }
+                array?.forEach { item -> resultList.add(item as WeatherResult) }
                 resultList
             })
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
-            .map { list -> list.map { weathers -> WeatherOfCity("", weathers.consolidated_weather[0], weathers.consolidated_weather[1]) }  }
+            .map { list -> list.mapIndexed { index, weatherResult -> WeatherOfCity(cityList[index].title, weatherResult.consolidated_weather[0], weatherResult.consolidated_weather[1]) } }
             .subscribe({result ->
                 _showProgress.value = false
                 _isRefreshing.value = false
-                result.forEachIndexed { index, woc -> woc.title = _citys.value?.get(index)?.title }
-                _wocList.value = result as ArrayList<WeatherOfCity>?
+                _wocList.value = result
             }, {err ->
                 err.printStackTrace()
                 _showProgress.value = false
                 _isRefreshing.value = false
             })
-
     }
 
     fun requestRefresh() {
         _isRefreshing.value = true
-        _wocList.value = ArrayList<WeatherOfCity>()
+        _wocList.value = null
         requestCityList()
     }
 }

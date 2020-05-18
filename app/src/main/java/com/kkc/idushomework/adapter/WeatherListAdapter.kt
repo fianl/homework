@@ -34,9 +34,12 @@ class WeatherListAdapter : RecyclerView.Adapter<WeatherListViewHolder>() {
         return if (position == 0) HEADER else ITEM
     }
 
-    fun setWeatherData(list: ArrayList<WeatherOfCity>) {
+    fun setWeatherData(list: List<WeatherOfCity>?) {
         weathers.clear()
-        weathers.addAll(list)
+
+        list?.let { it ->
+            weathers.addAll(it)
+        }
 
         notifyDataSetChanged()
     }

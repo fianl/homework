@@ -11,7 +11,7 @@ class WeatherListViewModel : ViewModel() {
     val showProgress: LiveData<Boolean>
         get() = model.showProgress
 
-    val wocList: LiveData<ArrayList<WeatherOfCity>>
+    val wocList: LiveData<List<WeatherOfCity>>
         get() = model.wocList
 
     val isRefreshing: LiveData<Boolean>
